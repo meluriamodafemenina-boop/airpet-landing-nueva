@@ -40,7 +40,6 @@
 
 <section class="hero wrap">
 
-  <!-- GALERÍA -->
   <div class="gallery">
 
     <img
@@ -116,7 +115,6 @@
   </div>
 
 
-  <!-- INFORMACIÓN DEL PRODUCTO -->
   <div class="buy">
 
     <span class="pill">
@@ -129,7 +127,6 @@
     </h1>
 
 
-    <!-- CALIFICACIÓN -->
     <div
       class="product-rating"
       style="
@@ -167,7 +164,6 @@
     </p>
 
 
-    <!-- PRECIO -->
     <div class="deal">
 
       <small>
@@ -206,7 +202,6 @@
     </div>
 
 
-    <!-- WHATSAPP -->
     <a
       class="btn wa"
       href="https://wa.me/573147636825?text=Hola%2C%20quiero%20pedir%20la%20promoci%C3%B3n%202x1%20de%20AirPet%20por%20%2489.900"
@@ -217,7 +212,6 @@
     </a>
 
 
-    <!-- CONTRA ENTREGA -->
     <button
       type="button"
       class="btn cod"
@@ -855,25 +849,11 @@
             Selecciona
           </option>
 
-          <option>
-            XS
-          </option>
-
-          <option>
-            S
-          </option>
-
-          <option>
-            M
-          </option>
-
-          <option>
-            L
-          </option>
-
-          <option>
-            XL
-          </option>
+          <option>XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
 
         </select>
 
@@ -941,12 +921,24 @@
 
 
 <!-- =========================
-     JAVASCRIPT INTEGRADO
+     JAVASCRIPT
 ========================= -->
 
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
+  /* =========================
+     SUPABASE
+  ========================= */
+
+  const SUPABASE_URL =
+    "https://xfqweayllizidwikvqah.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_nZx_ElmZ4GCry-ckviWc-Q_Iyw_EwqO";
+
 
 
   /* =========================
@@ -962,31 +954,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
   thumbnails.forEach(function (thumb) {
 
-    thumb.addEventListener("click", function () {
+    thumb.addEventListener(
+      "click",
+      function () {
+
+        thumbnails.forEach(
+          function (item) {
+
+            item.classList.remove(
+              "active"
+            );
+
+          }
+        );
 
 
-      thumbnails.forEach(function (item) {
-
-        item.classList.remove("active");
-
-      });
+        thumb.classList.add(
+          "active"
+        );
 
 
-      thumb.classList.add("active");
+        const nuevaImagen =
+          thumb.getAttribute(
+            "data-src"
+          );
 
 
-      const image =
-        thumb.getAttribute("data-src");
+        if (
+          mainImg &&
+          nuevaImagen
+        ) {
 
+          mainImg.src =
+            nuevaImagen;
 
-      if (mainImg && image) {
-
-        mainImg.src = image;
+        }
 
       }
-
-
-    });
+    );
 
   });
 
@@ -997,28 +1002,41 @@ document.addEventListener("DOMContentLoaded", function () {
   ========================= */
 
   const modal =
-    document.getElementById("orderModal");
+    document.getElementById(
+      "orderModal"
+    );
 
-  const openButton =
-    document.getElementById("showForm");
+  const botonPedido =
+    document.getElementById(
+      "showForm"
+    );
 
-  const stickyButton =
-    document.getElementById("stickyOrder");
+  const botonSticky =
+    document.getElementById(
+      "stickyOrder"
+    );
 
-  const closeButton =
-    document.getElementById("closeForm");
+  const botonCerrar =
+    document.getElementById(
+      "closeForm"
+    );
 
 
-  function openModal() {
+  function abrirFormulario() {
 
     if (!modal) return;
 
-    modal.classList.add("open");
+
+    modal.classList.add(
+      "open"
+    );
+
 
     modal.setAttribute(
       "aria-hidden",
       "false"
     );
+
 
     document.body.style.overflow =
       "hidden";
@@ -1026,16 +1044,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  function closeModal() {
+  function cerrarFormulario() {
 
     if (!modal) return;
 
-    modal.classList.remove("open");
+
+    modal.classList.remove(
+      "open"
+    );
+
 
     modal.setAttribute(
       "aria-hidden",
       "true"
     );
+
 
     document.body.style.overflow =
       "";
@@ -1043,31 +1066,31 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  if (openButton) {
+  if (botonPedido) {
 
-    openButton.addEventListener(
+    botonPedido.addEventListener(
       "click",
-      openModal
+      abrirFormulario
     );
 
   }
 
 
-  if (stickyButton) {
+  if (botonSticky) {
 
-    stickyButton.addEventListener(
+    botonSticky.addEventListener(
       "click",
-      openModal
+      abrirFormulario
     );
 
   }
 
 
-  if (closeButton) {
+  if (botonCerrar) {
 
-    closeButton.addEventListener(
+    botonCerrar.addEventListener(
       "click",
-      closeModal
+      cerrarFormulario
     );
 
   }
@@ -1079,9 +1102,11 @@ document.addEventListener("DOMContentLoaded", function () {
       "click",
       function (event) {
 
-        if (event.target === modal) {
+        if (
+          event.target === modal
+        ) {
 
-          closeModal();
+          cerrarFormulario();
 
         }
 
@@ -1099,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.key === "Escape"
       ) {
 
-        closeModal();
+        cerrarFormulario();
 
       }
 
@@ -1109,57 +1134,232 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =========================
-     FORMULARIO
+     FORMULARIO + SUPABASE
   ========================= */
 
-  const form =
-    document.getElementById("orderForm");
+  const formulario =
+    document.getElementById(
+      "orderForm"
+    );
 
 
-  if (form) {
+  if (formulario) {
 
-    form.addEventListener(
+    formulario.addEventListener(
       "submit",
-      function (event) {
+
+      async function (event) {
 
         event.preventDefault();
 
 
-        const data =
-          new FormData(form);
+        const botonEnviar =
+          formulario.querySelector(
+            'button[type="submit"]'
+          );
 
 
-        const mensaje =
+        const textoOriginal =
+          botonEnviar.textContent;
+
+
+        botonEnviar.disabled =
+          true;
+
+
+        botonEnviar.textContent =
+          "Registrando pedido...";
+
+
+        const datos =
+          new FormData(
+            formulario
+          );
+
+
+        const pedido = {
+
+          nombre:
+            datos.get("nombre"),
+
+          telefono:
+            datos.get("telefono"),
+
+          departamento:
+            datos.get("departamento"),
+
+          ciudad:
+            datos.get("ciudad"),
+
+          direccion:
+            datos.get("direccion"),
+
+          barrio:
+            datos.get("barrio"),
+
+          talla:
+            datos.get("talla"),
+
+          notas:
+            datos.get("notas") || "",
+
+          producto:
+            "AirPet 2x1",
+
+          cantidad:
+            2,
+
+          valor:
+            89900,
+
+          metodo_pago:
+            "Contra entrega",
+
+          estado:
+            "Nuevo"
+
+        };
+
+
+        try {
+
+
+          const respuesta =
+            await fetch(
+
+              SUPABASE_URL +
+              "/rest/v1/pedidos_airpet",
+
+              {
+
+                method:
+                  "POST",
+
+                headers: {
+
+                  "Content-Type":
+                    "application/json",
+
+                  "apikey":
+                    SUPABASE_KEY,
+
+                  "Authorization":
+                    "Bearer " +
+                    SUPABASE_KEY,
+
+                  "Prefer":
+                    "return=minimal"
+
+                },
+
+                body:
+                  JSON.stringify(
+                    pedido
+                  )
+
+              }
+
+            );
+
+
+          if (
+            !respuesta.ok
+          ) {
+
+            const errorTexto =
+              await respuesta.text();
+
+
+            console.error(
+              "Error de Supabase:",
+              errorTexto
+            );
+
+
+            throw new Error(
+              "El pedido no pudo guardarse"
+            );
+
+          }
+
+
+
+          /* =========================
+             WHATSAPP
+          ========================= */
+
+          const mensaje =
 
 `Hola, quiero confirmar mi pedido contra entrega de la promoción AirPet 2x1 por $89.900.
 
-Nombre: ${data.get("nombre")}
-Teléfono: ${data.get("telefono")}
-Departamento: ${data.get("departamento")}
-Ciudad / Municipio: ${data.get("ciudad")}
-Dirección: ${data.get("direccion")}
-Barrio: ${data.get("barrio")}
-Talla: ${data.get("talla")}
-Referencia: ${data.get("notas") || "Ninguna"}
+Nombre: ${datos.get("nombre")}
+Teléfono: ${datos.get("telefono")}
+Departamento: ${datos.get("departamento")}
+Ciudad / Municipio: ${datos.get("ciudad")}
+Dirección: ${datos.get("direccion")}
+Barrio: ${datos.get("barrio")}
+Talla: ${datos.get("talla")}
+Referencia: ${datos.get("notas") || "Ninguna"}
 
 Quiero confirmar disponibilidad y envío.`;
 
 
-        const url =
 
-          "https://wa.me/573147636825?text=" +
+          const whatsapp =
 
-          encodeURIComponent(
-            mensaje
+            "https://wa.me/573147636825?text=" +
+
+            encodeURIComponent(
+              mensaje
+            );
+
+
+
+          alert(
+            "✅ Tu pedido fue registrado correctamente."
           );
 
 
-        window.open(
-          url,
-          "_blank"
-        );
+          formulario.reset();
+
+
+          cerrarFormulario();
+
+
+          window.open(
+            whatsapp,
+            "_blank"
+          );
+
+
+        } catch (error) {
+
+
+          console.error(
+            error
+          );
+
+
+          alert(
+            "No pudimos registrar tu pedido. Por favor intenta nuevamente."
+          );
+
+
+        } finally {
+
+
+          botonEnviar.disabled =
+            false;
+
+
+          botonEnviar.textContent =
+            textoOriginal;
+
+
+        }
 
       }
+
     );
 
   }
