@@ -3,44 +3,1026 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>AirPet | Importadora El RebajÃ³n</title>
+  <meta name="description" content="AirPet GPS para mascotas. PromociÃ³n 2x1 por tiempo limitado.">
 
-  <title>AirPet | Importadora El Rebajón</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
-  <meta
-    name="description"
-    content="AirPet GPS para mascotas. Promoción 2x1 por tiempo limitado."
-  >
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
 
-  <link rel="stylesheet" href="styles.css">
+    :root{
+      --orange:#ff6a00;
+      --orange2:#ff8a00;
+      --black:#070707;
+      --black2:#101010;
+      --black3:#171717;
+      --white:#fff;
+      --gray:#a7a7a7;
+      --line:#2b2b2b;
+      --green:#1fad5c;
+      --gold:#ffc21c;
+    }
+
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 85% 8%,rgba(255,106,0,.12),transparent 23%),
+        radial-gradient(circle at 10% 30%,rgba(255,106,0,.06),transparent 20%),
+        var(--black);
+      color:#fff;
+      font-family:'Montserrat',Arial,sans-serif;
+      padding-bottom:76px;
+    }
+
+    body.modal-open{overflow:hidden}
+    button,input,select,textarea{font-family:inherit}
+    img{max-width:100%}
+    a{text-decoration:none}
+
+    .wrap{
+      width:min(1160px,calc(100% - 28px));
+      margin:auto;
+    }
+
+    /* HEADER */
+    .top{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background:rgba(7,7,7,.95);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid #1f1f1f;
+    }
+
+    .nav{
+      min-height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      font-size:11px;
+      letter-spacing:.12em;
+      color:#ddd;
+      font-weight:700;
+    }
+
+    .brand b{
+      display:block;
+      font-size:21px;
+      color:white;
+      letter-spacing:-.02em;
+      margin-top:2px;
+    }
+
+    .brand b::after{
+      content:"";
+      display:inline-block;
+      width:44px;
+      height:5px;
+      border-radius:10px;
+      margin-left:9px;
+      background:var(--orange);
+      vertical-align:middle;
+    }
+
+    .trend{
+      border:1px solid #383838;
+      background:#151515;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:800;
+      font-size:12px;
+      color:#fff;
+    }
+
+    /* HERO - ESTILO POSTER GANADOR */
+    .hero{
+      padding:26px 0 34px;
+    }
+
+    .sales-poster{
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      min-height:660px;
+      background:
+        linear-gradient(125deg,rgba(255,106,0,.07),transparent 35%),
+        linear-gradient(145deg,#151515,#080808 70%);
+      border:1px solid #2c2c2c;
+      border-radius:26px;
+      box-shadow:0 40px 100px rgba(0,0,0,.5);
+    }
+
+    .sales-poster::before{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      right:-120px;
+      top:-120px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(255,106,0,.25),rgba(255,106,0,0) 65%);
+      pointer-events:none;
+    }
+
+    .poster-copy{
+      padding:46px 38px 34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      width:max-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--orange);
+      color:#111;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.08em;
+      margin-bottom:18px;
+    }
+
+    .poster-copy h1{
+      margin:0;
+      font-size:clamp(44px,6vw,78px);
+      line-height:.94;
+      text-transform:uppercase;
+      letter-spacing:-.05em;
+    }
+
+    .poster-copy h1 span{
+      color:var(--orange);
+    }
+
+    .poster-sub{
+      color:#b8b8b8;
+      font-size:16px;
+      line-height:1.6;
+      max-width:500px;
+      margin:18px 0 22px;
+    }
+
+    .rating{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .rating .stars{
+      color:var(--gold);
+      letter-spacing:2px;
+      font-size:19px;
+    }
+
+    .rating strong{
+      font-size:14px;
+      color:#fff;
+    }
+
+    .price-box{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:end;
+      margin:7px 0 18px;
+    }
+
+    .before{
+      background:#151515;
+      border:1px solid #303030;
+      border-radius:12px;
+      padding:11px 12px;
+    }
+
+    .before span{
+      display:block;
+      color:#888;
+      font-size:10px;
+      font-weight:700;
+    }
+
+    .before s{
+      color:#b7b7b7;
+      font-size:17px;
+      font-weight:800;
+    }
+
+    .now{
+      background:linear-gradient(135deg,var(--orange2),var(--orange));
+      color:#111;
+      border-radius:15px;
+      padding:13px 18px;
+      position:relative;
+    }
+
+    .now small{
+      display:block;
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.08em;
+    }
+
+    .now strong{
+      display:block;
+      font-size:clamp(38px,5vw,56px);
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+
+    .save{
+      color:var(--orange2);
+      font-weight:800;
+      margin-bottom:18px;
+      font-size:13px;
+    }
+
+    .poster-benefits{
+      display:grid;
+      gap:12px;
+      margin:12px 0 24px;
+    }
+
+    .poster-benefit{
+      display:grid;
+      grid-template-columns:48px 1fr;
+      align-items:center;
+      gap:12px;
+      padding:11px 12px;
+      border:1px solid #292929;
+      border-radius:14px;
+      background:#111;
+    }
+
+    .poster-benefit img{
+      width:48px;
+      height:48px;
+      object-fit:contain;
+      border-radius:10px;
+    }
+
+    .poster-benefit b{
+      display:block;
+      font-size:14px;
+      color:#fff;
+    }
+
+    .poster-benefit span{
+      color:#8f8f8f;
+      font-size:12px;
+      line-height:1.4;
+    }
+
+    .poster-visual{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:34px;
+      min-width:0;
+    }
+
+    .poster-visual::after{
+      content:"";
+      position:absolute;
+      inset:auto 10% 8% 10%;
+      height:90px;
+      background:radial-gradient(ellipse,rgba(255,106,0,.25),transparent 70%);
+      filter:blur(12px);
+      pointer-events:none;
+    }
+
+    .hero-product{
+      width:min(100%,610px);
+      border-radius:22px;
+      position:relative;
+      z-index:2;
+      box-shadow:0 28px 70px rgba(0,0,0,.45);
+    }
+
+    .trust-strip{
+      grid-column:1/-1;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1px;
+      background:#2a2a2a;
+      border-top:1px solid #2b2b2b;
+    }
+
+    .trust-item{
+      background:#0c0c0c;
+      padding:16px 10px;
+      text-align:center;
+      font-weight:800;
+      font-size:12px;
+      color:#efefef;
+    }
+
+    .trust-item span{
+      color:var(--orange);
+      margin-right:5px;
+    }
+
+    /* ACCIONES */
+    .cta-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:6px;
+    }
+
+    .btn{
+      min-height:54px;
+      border:none;
+      border-radius:13px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 16px;
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      transition:.18s;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .wa{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .cod{
+      background:linear-gradient(135deg,var(--orange2),var(--orange));
+      color:#111;
+    }
+
+    /* GALERIA */
+    .gallery-section{
+      padding:44px 0 64px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:24px;
+    }
+
+    .section-title .kicker{
+      color:var(--orange);
+      font-size:11px;
+      letter-spacing:.12em;
+      font-weight:900;
+    }
+
+    .section-title h2{
+      font-size:clamp(32px,4vw,48px);
+      margin:8px 0;
+      letter-spacing:-.04em;
+    }
+
+    .section-title p{
+      color:#9b9b9b;
+      max-width:680px;
+      margin:0 auto;
+      line-height:1.65;
+    }
+
+    .gallery-card{
+      background:#111;
+      border:1px solid #292929;
+      border-radius:24px;
+      padding:14px;
+      max-width:820px;
+      margin:auto;
+    }
+
+    .main-img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      display:block;
+      border-radius:18px;
+    }
+
+    .thumbs{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      margin-top:12px;
+      padding-bottom:3px;
+    }
+
+    .thumb{
+      flex:0 0 82px;
+      padding:3px;
+      background:#171717;
+      border:2px solid transparent;
+      border-radius:11px;
+      cursor:pointer;
+    }
+
+    .thumb.active{
+      border-color:var(--orange);
+    }
+
+    .thumb img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:7px;
+      display:block;
+    }
+
+    /* BENEFICIOS */
+    .benefits{
+      padding:74px 0;
+      background:#0b0b0b;
+      border-top:1px solid #1d1d1d;
+      border-bottom:1px solid #1d1d1d;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .cards article{
+      min-height:210px;
+      padding:23px;
+      background:linear-gradient(145deg,#171717,#101010);
+      border:1px solid #2a2a2a;
+      border-radius:18px;
+    }
+
+    .benefit-title{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      color:#fff;
+      font-size:17px;
+      line-height:1.25;
+    }
+
+    .benefit-icon{
+      width:52px;
+      height:52px;
+      object-fit:contain;
+      flex-shrink:0;
+      border-radius:12px;
+    }
+
+    .cards p{
+      color:#9c9c9c;
+      line-height:1.65;
+      font-size:14px;
+      margin-top:16px;
+    }
+
+    /* DESCRIPCION */
+    .included{
+      padding:78px 0;
+    }
+
+    .included h2,
+    .reviews h2,
+    .faq h2,
+    .final h2{
+      font-size:clamp(31px,4vw,48px);
+      line-height:1.05;
+      letter-spacing:-.035em;
+      margin:0 0 12px;
+    }
+
+    .included p{
+      max-width:860px;
+      color:#aaa;
+      line-height:1.8;
+      font-size:17px;
+    }
+
+    .included b{color:var(--orange)}
+
+    /* REVIEWS */
+    .reviews{
+      padding:78px 0;
+      background:
+        radial-gradient(circle at 8% 50%,rgba(255,106,0,.08),transparent 24%),
+        #0c0c0c;
+    }
+
+    .section-kicker{
+      color:var(--orange);
+      font-size:11px;
+      letter-spacing:.12em;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .sub{
+      color:#9c9c9c;
+      line-height:1.65;
+    }
+
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-top:32px;
+    }
+
+    .review-card{
+      background:#151515;
+      border:1px solid #2b2b2b;
+      border-radius:18px;
+      padding:22px;
+    }
+
+    .review-card .stars{
+      color:var(--gold);
+      letter-spacing:2px;
+      font-size:19px;
+    }
+
+    .review-card p{
+      color:#aaa;
+      line-height:1.65;
+    }
+
+    .review-card b{
+      display:block;
+      color:#fff;
+      margin-top:12px;
+    }
+
+    .review-card span{
+      color:var(--orange);
+      display:block;
+      margin-top:4px;
+      font-size:13px;
+    }
+
+    /* FAQ */
+    .faq{
+      padding:78px 0;
+    }
+
+    .faq details{
+      background:#111;
+      border:1px solid #292929;
+      border-radius:14px;
+      padding:18px 20px;
+      margin:10px 0;
+    }
+
+    .faq summary{
+      cursor:pointer;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .faq p{
+      color:#9f9f9f;
+      line-height:1.6;
+    }
+
+    /* FINAL */
+    .final{
+      text-align:center;
+      padding:72px 0 110px;
+      border-top:1px solid #272727;
+      background:
+        linear-gradient(135deg,rgba(255,106,0,.22),transparent 40%),
+        #080808;
+    }
+
+    .final .pill{
+      display:inline-flex;
+      background:var(--orange);
+      color:#111;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.08em;
+      padding:9px 13px;
+      border-radius:999px;
+    }
+
+    .final h2{
+      margin-top:18px;
+      text-transform:uppercase;
+      font-size:clamp(42px,6vw,70px);
+    }
+
+    /* MODAL */
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      background:rgba(0,0,0,.84);
+      backdrop-filter:blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .modal.open{display:flex}
+
+    .modal-card{
+      position:relative;
+      width:min(680px,100%);
+      max-height:92vh;
+      overflow:auto;
+      background:#121212;
+      border:1px solid #333;
+      border-radius:22px;
+      padding:28px;
+      color:#fff;
+    }
+
+    .close{
+      position:absolute;
+      right:16px;
+      top:9px;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-size:36px;
+      cursor:pointer;
+    }
+
+    .modal-card h2{
+      margin-top:0;
+      font-size:30px;
+    }
+
+    .modal-card>p{color:#aaa}
+
+    .size-guide{
+      width:100%;
+      border-radius:14px;
+      margin:12px 0 20px;
+    }
+
+    .modal label{
+      display:block;
+      color:#ddd;
+      font-weight:700;
+      font-size:13px;
+      margin:13px 0;
+    }
+
+    .modal input,
+    .modal select,
+    .modal textarea{
+      width:100%;
+      margin-top:7px;
+      padding:14px;
+      border:1px solid #333;
+      border-radius:10px;
+      background:#090909;
+      color:#fff;
+      outline:none;
+    }
+
+    .modal input:focus,
+    .modal select:focus,
+    .modal textarea:focus{
+      border-color:var(--orange);
+    }
+
+    /* STICKY MOBILE */
+    .sticky{display:none}
+
+    @media(max-width:900px){
+      .sales-poster{
+        grid-template-columns:1fr;
+      }
+
+      .poster-visual{
+        order:-1;
+        padding:22px 22px 6px;
+      }
+
+      .poster-copy{
+        padding:24px 22px 28px;
+      }
+
+      .poster-copy h1{
+        font-size:clamp(42px,12vw,66px);
+      }
+
+      .trust-strip{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .cards{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:600px){
+      .wrap{width:min(100% - 20px,1160px)}
+
+      .nav{min-height:64px}
+
+      .brand{font-size:9px}
+      .brand b{font-size:15px}
+
+      .trend{
+        font-size:9px;
+        padding:8px 9px;
+      }
+
+      .hero{padding-top:16px}
+
+      .sales-poster{
+        border-radius:20px;
+        min-height:0;
+      }
+
+      .poster-visual{
+        padding:12px 12px 4px;
+      }
+
+      .hero-product{
+        border-radius:15px;
+      }
+
+      .poster-copy{
+        padding:22px 16px 24px;
+      }
+
+      .eyebrow{
+        font-size:9px;
+        padding:7px 10px;
+      }
+
+      .poster-copy h1{
+        font-size:42px;
+      }
+
+      .poster-sub{
+        font-size:14px;
+        margin:14px 0 18px;
+      }
+
+      .price-box{
+        grid-template-columns:1fr;
+      }
+
+      .before{
+        width:max-content;
+      }
+
+      .now strong{
+        font-size:44px;
+      }
+
+      .poster-benefit{
+        grid-template-columns:44px 1fr;
+      }
+
+      .poster-benefit img{
+        width:44px;
+        height:44px;
+      }
+
+      .cta-row{
+        grid-template-columns:1fr;
+      }
+
+      .trust-strip{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .trust-item{
+        font-size:10px;
+        padding:13px 8px;
+      }
+
+      .gallery-section{
+        padding:34px 0 52px;
+      }
+
+      .gallery-card{
+        padding:9px;
+        border-radius:18px;
+      }
+
+      .main-img{
+        border-radius:13px;
+      }
+
+      .thumb{
+        flex-basis:68px;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .benefit-icon{
+        width:46px;
+        height:46px;
+      }
+
+      .reviews-grid{
+        grid-template-columns:1fr;
+      }
+
+      .benefits,
+      .reviews,
+      .included,
+      .faq{
+        padding-top:54px;
+        padding-bottom:54px;
+      }
+
+      .sticky{
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:70;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        background:rgba(8,8,8,.97);
+        backdrop-filter:blur(14px);
+        border-top:1px solid #2c2c2c;
+        padding:10px 13px;
+      }
+
+      .sticky span{
+        display:flex;
+        flex-direction:column;
+      }
+
+      .sticky b{
+        font-size:16px;
+        color:#fff;
+      }
+
+      .sticky small{
+        color:var(--orange);
+        font-size:10px;
+      }
+
+      .sticky button{
+        border:0;
+        border-radius:11px;
+        padding:13px 17px;
+        background:var(--orange);
+        color:#111;
+        font-weight:900;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header class="top">
   <div class="wrap nav">
-
     <div class="brand">
-      IMPORTADORA <b>EL REBAJÓN</b>
+      IMPORTADORA
+      <b>EL REBAJÃ“N</b>
     </div>
-
-    <span class="trend">
-      🔥 Producto en tendencia
-    </span>
-
+    <span class="trend">ðŸ”¥ Producto en tendencia</span>
   </div>
 </header>
 
-
 <main>
-
-
-<!-- =========================
-     PRODUCTO PRINCIPAL
-========================= -->
 
 <section class="hero wrap">
 
-  <div class="gallery">
+  <div class="sales-poster">
+
+    <div class="poster-copy">
+
+      <span class="eyebrow">OFERTA POR TIEMPO LIMITADO</span>
+
+      <h1>
+        TU MASCOTA
+        <span>SIEMPRE SEGURA</span>
+      </h1>
+
+      <p class="poster-sub">
+        AirPet GPS te ayuda a tener una referencia de ubicaciÃ³n de tu mascota
+        mientras disfruta sus paseos y aventuras.
+      </p>
+
+      <div class="rating">
+        <span class="stars">â˜…â˜…â˜…â˜…â˜…</span>
+        <strong>4.95/5</strong>
+      </div>
+
+      <div class="price-box">
+        <div class="before">
+          <span>ANTES</span>
+          <s>$145.900</s>
+        </div>
+
+        <div class="now">
+          <small>AHORA Â· COMPRA 2 POR 1</small>
+          <strong>$89.900</strong>
+        </div>
+      </div>
+
+      <div class="save">AHORRAS $56.000</div>
+
+      <div class="poster-benefits">
+
+        <div class="poster-benefit">
+          <img src="assets/gps.png" alt="GPS">
+          <div>
+            <b>GPS en tiempo real</b>
+            <span>Una herramienta extra para localizar a tu mascota.</span>
+          </div>
+        </div>
+
+        <div class="poster-benefit">
+          <img src="assets/agua.png" alt="Resistente al agua">
+          <div>
+            <b>Resistente al agua</b>
+            <span>Preparado para lluvia, salpicaduras y paseos.</span>
+          </div>
+        </div>
+
+        <div class="poster-benefit">
+          <img src="assets/reflectiva.png" alt="Correa reflectiva">
+          <div>
+            <b>Correa reflectiva</b>
+            <span>Mayor visibilidad durante caminatas nocturnas.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-row">
+        <a
+          class="btn wa"
+          href="https://wa.me/573147636825?text=Hola%2C%20quiero%20pedir%20la%20promoci%C3%B3n%202x1%20de%20AirPet%20por%20%2489.900"
+          target="_blank"
+          rel="noopener"
+        >
+          Pedir por WhatsApp
+        </a>
+
+        <button class="btn cod" id="showForm" type="button">
+          PEDIR AHORA
+        </button>
+      </div>
+
+    </div>
+
+    <div class="poster-visual">
+      <img
+        src="assets/01-principal.jpg"
+        alt="AirPet GPS para mascotas"
+        class="hero-product"
+      >
+    </div>
+
+    <div class="trust-strip">
+      <div class="trust-item"><span>â—</span>EnvÃ­os a toda Colombia</div>
+      <div class="trust-item"><span>â—</span>Pago contra entrega</div>
+      <div class="trust-item"><span>â—</span>Compra segura</div>
+      <div class="trust-item"><span>â—</span>6 meses de garantÃ­a</div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="gallery-section wrap">
+
+  <div class="section-title">
+    <div class="kicker">CONOCE AIRPET</div>
+    <h2>Mira cada detalle antes de pedir</h2>
+    <p>
+      Toca las imÃ¡genes para ver el producto, su soporte, la correa reflectiva
+      y la guÃ­a de tallas.
+    </p>
+  </div>
+
+  <div class="gallery-card">
 
     <img
       id="mainImg"
@@ -51,310 +1033,93 @@
 
     <div class="thumbs">
 
-      <button
-        type="button"
-        class="thumb active"
-        data-src="assets/01-principal.jpg"
-      >
-        <img
-          src="assets/01-principal.jpg"
-          alt="AirPet oferta 2x1"
-        >
+      <button type="button" class="thumb active" data-src="assets/01-principal.jpg">
+        <img src="assets/01-principal.jpg" alt="AirPet">
       </button>
 
-
-      <button
-        type="button"
-        class="thumb"
-        data-src="assets/02-gps.jpg"
-      >
-        <img
-          src="assets/02-gps.jpg"
-          alt="AirPet GPS incluido"
-        >
+      <button type="button" class="thumb" data-src="assets/02-gps.jpg">
+        <img src="assets/02-gps.jpg" alt="GPS">
       </button>
 
-
-      <button
-        type="button"
-        class="thumb"
-        data-src="assets/03-reflectiva.jpg"
-      >
-        <img
-          src="assets/03-reflectiva.jpg"
-          alt="Correa reflectiva"
-        >
+      <button type="button" class="thumb" data-src="assets/03-reflectiva.jpg">
+        <img src="assets/03-reflectiva.jpg" alt="Reflectiva">
       </button>
 
-
-      <button
-        type="button"
-        class="thumb"
-        data-src="assets/04-detalles.jpg"
-      >
-        <img
-          src="assets/04-detalles.jpg"
-          alt="Detalles del collar AirPet"
-        >
+      <button type="button" class="thumb" data-src="assets/04-detalles.jpg">
+        <img src="assets/04-detalles.jpg" alt="Detalles">
       </button>
 
-
-      <button
-        type="button"
-        class="thumb"
-        data-src="assets/05-tallas.jpg"
-      >
-        <img
-          src="assets/05-tallas.jpg"
-          alt="Guía de tallas AirPet"
-        >
+      <button type="button" class="thumb" data-src="assets/05-tallas.jpg">
+        <img src="assets/05-tallas.jpg" alt="Tallas">
       </button>
 
     </div>
-
-  </div>
-
-
-  <div class="buy">
-
-    <span class="pill">
-      OFERTA POR TIEMPO LIMITADO
-    </span>
-
-
-    <h1>
-      AirPet GPS para mascotas
-    </h1>
-
-
-    <div
-      class="product-rating"
-      style="
-        display:flex;
-        align-items:center;
-        gap:9px;
-        margin:8px 0 14px;
-      "
-    >
-
-      <span
-        style="
-          color:#f4b400;
-          font-size:21px;
-          letter-spacing:1px;
-        "
-      >
-        ★★★★★
-      </span>
-
-      <strong
-        style="
-          color:#102a4c;
-          font-size:15px;
-        "
-      >
-        4.95/5
-      </strong>
-
-    </div>
-
-
-    <p class="lead">
-      La tranquilidad de saber dónde está tu mascota cuando más lo necesitas.
-    </p>
-
-
-    <div class="deal">
-
-      <small>
-        COMPRA 2 POR 1
-      </small>
-
-      <strong>
-        $89.900
-      </strong>
-
-      <div>
-        <s>
-          Antes $145.900
-        </s>
-
-        <b>
-          Ahorras $56.000
-        </b>
-      </div>
-
-    </div>
-
-
-    <div class="mini">
-
-      ✓ Envíos a toda Colombia
-
-      &nbsp;
-
-      ✓ Pago contra entrega
-
-      &nbsp;
-
-      ✓ 6 meses de garantía
-
-    </div>
-
-
-    <a
-      class="btn wa"
-      href="https://wa.me/573147636825?text=Hola%2C%20quiero%20pedir%20la%20promoci%C3%B3n%202x1%20de%20AirPet%20por%20%2489.900"
-      target="_blank"
-      rel="noopener"
-    >
-      ☎️ &nbsp; Pedir por WhatsApp
-    </a>
-
-
-    <button
-      type="button"
-      class="btn cod"
-      id="showForm"
-    >
-      🏠 &nbsp; Pedir contra entrega
-    </button>
 
   </div>
 
 </section>
 
-
-
-<!-- =========================
-     BENEFICIOS
-========================= -->
-
-<section class="benefits paw-section">
+<section class="benefits">
 
   <div class="wrap">
 
-    <h2>
-      Más seguridad para tu mascota.
-      Más tranquilidad para ti.
-    </h2>
-
-    <p class="sub">
-      AirPet combina localización, resistencia y comodidad para acompañar
-      a tu mascota todos los días.
-    </p>
-
+    <div class="section-title">
+      <div class="kicker">BENEFICIOS</div>
+      <h2>DiseÃ±ado para acompaÃ±ar a tu mascota</h2>
+      <p>
+        TecnologÃ­a, comodidad, resistencia y respaldo en un solo producto.
+      </p>
+    </div>
 
     <div class="cards">
 
-
       <article>
-
         <b class="benefit-title">
-          <img
-            src="assets/gps.png"
-            class="benefit-icon"
-            alt="GPS"
-          >
+          <img src="assets/gps.png" class="benefit-icon" alt="GPS">
           GPS en tiempo real
         </b>
-
-        <p>
-          Localiza a tu mascota y reduce la angustia si se aleja.
-        </p>
-
+        <p>Localiza a tu mascota y ten una herramienta extra cuando se aleje.</p>
       </article>
 
-
       <article>
-
         <b class="benefit-title">
-          <img
-            src="assets/bateria.png"
-            class="benefit-icon"
-            alt="Batería"
-          >
-          Hasta 6 días de batería
+          <img src="assets/bateria.png" class="benefit-icon" alt="BaterÃ­a">
+          Hasta 6 dÃ­as de baterÃ­a
         </b>
-
-        <p>
-          Diseñado para acompañarte durante varios días.
-        </p>
-
+        <p>AutonomÃ­a para acompaÃ±ar su rutina durante varios dÃ­as.</p>
       </article>
 
-
       <article>
-
         <b class="benefit-title">
-          <img
-            src="assets/agua.png"
-            class="benefit-icon"
-            alt="Resistente al agua"
-          >
+          <img src="assets/agua.png" class="benefit-icon" alt="Agua">
           Resistente al agua
         </b>
-
-        <p>
-          Preparado para aventuras y distintos tipos de terreno.
-        </p>
-
+        <p>Preparado para lluvia, salpicaduras y diferentes tipos de terreno.</p>
       </article>
 
-
       <article>
-
         <b class="benefit-title">
-          <img
-            src="assets/reflectiva.png"
-            class="benefit-icon"
-            alt="Correa reflectiva"
-          >
+          <img src="assets/reflectiva.png" class="benefit-icon" alt="Reflectiva">
           Correa reflectiva
         </b>
-
-        <p>
-          Mayor visibilidad durante caminatas con poca luz.
-        </p>
-
+        <p>Mejora su visibilidad durante caminatas nocturnas.</p>
       </article>
-
 
       <article>
-
         <b class="benefit-title">
-          <img
-            src="assets/comodidad.png"
-            class="benefit-icon"
-            alt="Cómodo y ajustable"
-          >
-          Cómodo y ajustable
+          <img src="assets/comodidad.png" class="benefit-icon" alt="Comodidad">
+          CÃ³modo y ajustable
         </b>
-
-        <p>
-          Acolchado suave y tallas para diferentes mascotas.
-        </p>
-
+        <p>Acolchado suave y diferentes tallas para mayor comodidad.</p>
       </article>
-
 
       <article>
-
         <b class="benefit-title">
-          <img
-            src="assets/garantia.png"
-            class="benefit-icon"
-            alt="Garantía"
-          >
-          6 meses de garantía
+          <img src="assets/garantia.png" class="benefit-icon" alt="GarantÃ­a">
+          6 meses de garantÃ­a
         </b>
-
-        <p>
-          Compra con mayor respaldo y tranquilidad.
-        </p>
-
+        <p>Compra con respaldo y mayor tranquilidad.</p>
       </article>
-
 
     </div>
 
@@ -362,165 +1127,101 @@
 
 </section>
 
-
-
-<!-- =========================
-     DESCRIPCIÓN
-========================= -->
-
 <section class="included wrap">
 
-  <h2>
-    Todo pensado para proteger a tu mascota
-  </h2>
-
+  <h2>MÃ¡s que un collar. Una capa extra de tranquilidad.</h2>
 
   <p>
-
-    El AirPet localizador GPS viene integrado con un soporte resistente
-    y una correa reflectiva, cómoda y ajustable.
-
-    La promoción actual es
-
-    <b>
-      2 por 1 por $89.900
-    </b>.
-
+    AirPet incluye el localizador GPS, soporte resistente y correa reflectiva,
+    cÃ³moda y ajustable. La promociÃ³n actual incluye
+    <b>2 AirPet por $89.900</b>.
   </p>
 
 </section>
 
-
-
-<!-- =========================
-     TESTIMONIOS
-========================= -->
-
-<section class="reviews paw-section">
+<section class="reviews">
 
   <div class="wrap">
 
-    <div class="section-kicker">
-      🐾 EXPERIENCIAS DE CLIENTES
-    </div>
+    <div class="section-kicker">EXPERIENCIAS DE CLIENTES</div>
 
-
-    <h2>
-      Lo que dicen quienes ya lo probaron
-    </h2>
-
+    <h2>Lo que dicen quienes ya lo probaron</h2>
 
     <p class="sub">
-      Testimonios de demostración para esta versión de prueba.
+      Testimonios de demostraciÃ³n para esta versiÃ³n de prueba.
     </p>
-
 
     <div class="reviews-grid">
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “Me dio mucha tranquilidad poder tener una referencia de ubicación
-          cuando salimos al parque.”
-        </p>
-        <b>María Camila</b>
-        <span>Medellín</span>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œMe dio mucha tranquilidad tener una referencia de ubicaciÃ³n cuando salimos al parque.â€</p>
+        <b>MarÃ­a Camila</b>
+        <span>MedellÃ­n</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “La correa se siente resistente y el reflectivo se nota bastante
-          en la noche.”
-        </p>
-        <b>José Arbeláez</b>
-        <span>Bogotá</span>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œLa correa se siente resistente y el reflectivo se nota muchÃ­simo en la noche.â€</p>
+        <b>JosÃ© ArbelÃ¡ez</b>
+        <span>BogotÃ¡</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “El pedido fue muy sencillo y pagar contra entrega me dio más confianza.”
-        </p>
-        <b>Laura Gómez</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œEl pedido fue sencillo y pagar contra entrega me dio mucha confianza.â€</p>
+        <b>Laura GÃ³mez</b>
         <span>Cali</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “Compré la promoción para mis dos perros y me gustó mucho la presentación.”
-        </p>
-        <b>Andrea Martínez</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œComprÃ© la promociÃ³n para mis dos perros y quedÃ© muy contenta.â€</p>
+        <b>Andrea MartÃ­nez</b>
         <span>Barranquilla</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “El collar es cómodo, ajustable y se ve de buena calidad.”
-        </p>
-        <b>Daniela Ríos</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œEl collar es cÃ³modo, ajustable y se siente de muy buena calidad.â€</p>
+        <b>Daniela RÃ­os</b>
         <span>Manizales</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “Me gustó que viniera todo explicado y que pudiera escoger
-          la talla fácilmente.”
-        </p>
-        <b>Santiago López</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œMe gustÃ³ poder escoger fÃ¡cilmente la talla antes de realizar el pedido.â€</p>
+        <b>Santiago LÃ³pez</b>
         <span>Pereira</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “Se ve bonito puesto y me parece muy útil para una mascota
-          que sale bastante.”
-        </p>
-        <b>Valentina Pérez</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œSe ve bonito puesto y me parece muy Ãºtil para una mascota que sale bastante.â€</p>
+        <b>Valentina PÃ©rez</b>
         <span>Cartagena</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “La atención por WhatsApp fue clara y el proceso de compra muy rápido.”
-        </p>
-        <b>Camilo Hernández</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œLa atenciÃ³n fue clara y el proceso de compra muy rÃ¡pido.â€</p>
+        <b>Camilo HernÃ¡ndez</b>
         <span>Bucaramanga</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “La promoción 2x1 me pareció una excelente opción para mis dos gatos.”
-        </p>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œEl 2x1 fue perfecto porque tengo dos gatos.â€</p>
         <b>Natalia Torres</b>
-        <span>Ibagué</span>
+        <span>IbaguÃ©</span>
       </article>
 
-
       <article class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “Me gustó el diseño y la seguridad que transmite la compra contra entrega.”
-        </p>
-        <b>Paola Ramírez</b>
+        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <p>â€œMe gustÃ³ la seguridad que transmite poder pagar cuando recibes.â€</p>
+        <b>Paola RamÃ­rez</b>
         <span>La Dorada</span>
       </article>
-
 
     </div>
 
@@ -528,188 +1229,93 @@
 
 </section>
 
+<section class="faq wrap">
 
-
-<!-- =========================
-     PREGUNTAS
-========================= -->
-
-<section class="faq wrap paw-section">
-
-  <h2>
-    Preguntas frecuentes
-  </h2>
-
+  <h2>Preguntas frecuentes</h2>
 
   <details>
-    <summary>¿Cuánto dura la batería?</summary>
+    <summary>Â¿CuÃ¡nto dura la baterÃ­a?</summary>
+    <p>Hasta 6 dÃ­as, segÃºn las condiciones de uso.</p>
+  </details>
+
+  <details>
+    <summary>Â¿Es resistente al agua?</summary>
     <p>
-      Hasta 6 días, según las condiciones de uso.
+      SÃ­. EstÃ¡ pensado para acompaÃ±ar a tu mascota en diferentes terrenos
+      y situaciones cotidianas.
     </p>
   </details>
 
-
   <details>
-    <summary>¿Es resistente al agua?</summary>
+    <summary>Â¿CÃ³mo elijo la talla?</summary>
     <p>
-      Sí, está diseñado para resistir el agua y acompañar a tu mascota
-      en diferentes terrenos.
+      Al abrir el formulario podrÃ¡s consultar la guÃ­a de tallas antes de realizar tu pedido.
     </p>
   </details>
 
-
   <details>
-    <summary>¿Cómo elijo la talla?</summary>
-    <p>
-      Al abrir el formulario de pedido podrás consultar la guía de tallas
-      antes de seleccionar.
-    </p>
-  </details>
-
-
-  <details>
-    <summary>¿Tiene garantía?</summary>
-    <p>
-      Sí, incluye 6 meses de garantía.
-    </p>
+    <summary>Â¿Tiene garantÃ­a?</summary>
+    <p>SÃ­. AirPet incluye 6 meses de garantÃ­a.</p>
   </details>
 
 </section>
-
-
-
-<!-- =========================
-     CIERRE
-========================= -->
 
 <section class="final">
-
   <div class="wrap">
-
-    <span class="pill">
-      OFERTA POR TIEMPO LIMITADO
-    </span>
-
-    <h2>
-      Protege a tu mascota
-    </h2>
-
+    <span class="pill">OFERTA POR TIEMPO LIMITADO</span>
+    <h2>Protege a tu mascota</h2>
   </div>
-
 </section>
-
 
 </main>
 
-
-
-<!-- =========================
-     MODAL CONTRA ENTREGA
-========================= -->
-
-<div
-  class="modal"
-  id="orderModal"
-  aria-hidden="true"
->
+<div class="modal" id="orderModal" aria-hidden="true">
 
   <div class="modal-card">
 
-    <button
-      type="button"
-      class="close"
-      id="closeForm"
-      aria-label="Cerrar formulario"
-    >
-      ×
-    </button>
+    <button type="button" class="close" id="closeForm">Ã—</button>
 
+    <h2>Pedido contra entrega</h2>
 
-    <h2>
-      Pedido contra entrega
-    </h2>
+    <p>Completa tus datos para solicitar tu AirPet.</p>
 
-
-    <p>
-      Completa tus datos para solicitar tu AirPet.
-    </p>
-
-
-    <img
-      class="size-guide"
-      src="assets/05-tallas.jpg"
-      alt="Guía de tallas"
-    >
-
+    <img class="size-guide" src="assets/05-tallas.jpg" alt="GuÃ­a de tallas">
 
     <form id="orderForm">
 
-
       <label>
         Nombre completo
-        <input
-          required
-          name="nombre"
-          autocomplete="name"
-        >
+        <input required name="nombre" autocomplete="name">
       </label>
-
 
       <label>
-        Teléfono / WhatsApp
-        <input
-          required
-          name="telefono"
-          inputmode="tel"
-          autocomplete="tel"
-        >
+        TelÃ©fono / WhatsApp
+        <input required name="telefono" inputmode="tel">
       </label>
-
 
       <label>
         Departamento
-        <input
-          required
-          name="departamento"
-        >
+        <input required name="departamento">
       </label>
-
 
       <label>
         Ciudad / municipio
-        <input
-          required
-          name="ciudad"
-        >
+        <input required name="ciudad">
       </label>
-
 
       <label>
-        Dirección completa
-        <input
-          required
-          name="direccion"
-          autocomplete="street-address"
-        >
+        DirecciÃ³n completa
+        <input required name="direccion">
       </label>
-
 
       <label>
         Barrio
-        <input
-          required
-          name="barrio"
-        >
+        <input required name="barrio">
       </label>
-
 
       <label>
         Talla
-
-        <select
-          required
-          name="talla"
-        >
+        <select required name="talla">
           <option value="">Selecciona</option>
           <option>XS</option>
           <option>S</option>
@@ -717,27 +1323,14 @@
           <option>L</option>
           <option>XL</option>
         </select>
-
       </label>
-
 
       <label>
         Referencia o indicaciones
-
-        <textarea
-          name="notas"
-          rows="3"
-        ></textarea>
+        <textarea name="notas" rows="3"></textarea>
       </label>
 
-
-      <button
-        class="btn cod"
-        type="submit"
-      >
-        Confirmar pedido
-      </button>
-
+      <button class="btn cod" type="submit">Confirmar pedido</button>
 
     </form>
 
@@ -745,43 +1338,17 @@
 
 </div>
 
-
-
-<!-- =========================
-     BARRA INFERIOR MÓVIL
-========================= -->
-
 <div class="sticky">
-
   <span>
-    <b>2×1 $89.900</b>
+    <b>2Ã—1 $89.900</b>
     <small>Oferta limitada</small>
   </span>
 
-
-  <button
-    type="button"
-    id="stickyOrder"
-  >
-    PEDIR AHORA
-  </button>
-
+  <button type="button" id="stickyOrder">PEDIR AHORA</button>
 </div>
 
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-  /* =========================
-     SUPABASE
-  ========================= */
+document.addEventListener("DOMContentLoaded",function(){
 
   const SUPABASE_URL =
     "https://xfqweayllizidwikvqah.supabase.co";
@@ -789,430 +1356,177 @@ document.addEventListener("DOMContentLoaded", function () {
   const SUPABASE_KEY =
     "sb_publishable_nZx_ElmZ4GCry-ckviWc-Q_Iyw_EwqO";
 
-
-
-  /* =========================
-     GALERÍA
-  ========================= */
-
   const mainImg =
     document.getElementById("mainImg");
 
   const thumbnails =
     document.querySelectorAll(".thumb");
 
+  thumbnails.forEach(function(thumb){
 
-  thumbnails.forEach(function (thumb) {
+    thumb.addEventListener("click",function(){
 
-    thumb.addEventListener(
-      "click",
-      function () {
+      thumbnails.forEach(function(item){
+        item.classList.remove("active");
+      });
 
-        thumbnails.forEach(
-          function (item) {
+      thumb.classList.add("active");
 
-            item.classList.remove(
-              "active"
-            );
+      const nuevaImagen =
+        thumb.getAttribute("data-src");
 
-          }
-        );
-
-
-        thumb.classList.add(
-          "active"
-        );
-
-
-        const nuevaImagen =
-          thumb.getAttribute(
-            "data-src"
-          );
-
-
-        if (
-          mainImg &&
-          nuevaImagen
-        ) {
-
-          mainImg.src =
-            nuevaImagen;
-
-        }
-
+      if(mainImg && nuevaImagen){
+        mainImg.src = nuevaImagen;
       }
-    );
+
+    });
 
   });
 
-
-
-  /* =========================
-     MODAL CONTRA ENTREGA
-  ========================= */
-
   const modal =
-    document.getElementById(
-      "orderModal"
-    );
+    document.getElementById("orderModal");
 
   const botonPedido =
-    document.getElementById(
-      "showForm"
-    );
+    document.getElementById("showForm");
 
   const botonSticky =
-    document.getElementById(
-      "stickyOrder"
-    );
+    document.getElementById("stickyOrder");
 
   const botonCerrar =
-    document.getElementById(
-      "closeForm"
-    );
+    document.getElementById("closeForm");
 
-
-  function abrirFormulario() {
-
-    if (!modal) return;
-
-    modal.classList.add(
-      "open"
-    );
-
-    modal.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-    document.body.style.overflow =
-      "hidden";
-
+  function abrirFormulario(){
+    if(!modal)return;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.classList.add("modal-open");
   }
 
-
-  function cerrarFormulario() {
-
-    if (!modal) return;
-
-    modal.classList.remove(
-      "open"
-    );
-
-    modal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.style.overflow =
-      "";
-
+  function cerrarFormulario(){
+    if(!modal)return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden","true");
+    document.body.classList.remove("modal-open");
   }
 
-
-  if (botonPedido) {
-
-    botonPedido.addEventListener(
-      "click",
-      abrirFormulario
-    );
-
+  if(botonPedido){
+    botonPedido.addEventListener("click",abrirFormulario);
   }
 
-
-  if (botonSticky) {
-
-    botonSticky.addEventListener(
-      "click",
-      abrirFormulario
-    );
-
+  if(botonSticky){
+    botonSticky.addEventListener("click",abrirFormulario);
   }
 
-
-  if (botonCerrar) {
-
-    botonCerrar.addEventListener(
-      "click",
-      cerrarFormulario
-    );
-
+  if(botonCerrar){
+    botonCerrar.addEventListener("click",cerrarFormulario);
   }
 
-
-  if (modal) {
-
-    modal.addEventListener(
-      "click",
-      function (event) {
-
-        if (
-          event.target === modal
-        ) {
-
-          cerrarFormulario();
-
-        }
-
-      }
-    );
-
-  }
-
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
-
-      if (
-        event.key === "Escape"
-      ) {
-
+  if(modal){
+    modal.addEventListener("click",function(event){
+      if(event.target===modal){
         cerrarFormulario();
-
       }
+    });
+  }
 
+  document.addEventListener("keydown",function(event){
+    if(event.key==="Escape"){
+      cerrarFormulario();
     }
-  );
-
-
-
-  /* =========================
-     FORMULARIO + SUPABASE
-  ========================= */
+  });
 
   const formulario =
-    document.getElementById(
-      "orderForm"
-    );
+    document.getElementById("orderForm");
 
-
-  if (formulario) {
+  if(formulario){
 
     formulario.addEventListener(
       "submit",
-
-      async function (event) {
+      async function(event){
 
         event.preventDefault();
 
-
         const botonEnviar =
-          formulario.querySelector(
-            'button[type="submit"]'
-          );
-
+          formulario.querySelector('button[type="submit"]');
 
         const textoOriginal =
           botonEnviar.textContent;
 
-
-        botonEnviar.disabled =
-          true;
-
-
-        botonEnviar.textContent =
-          "Registrando pedido...";
-
+        botonEnviar.disabled = true;
+        botonEnviar.textContent = "Registrando pedido...";
 
         const datos =
-          new FormData(
-            formulario
-          );
-
+          new FormData(formulario);
 
         const pedido = {
-
-          nombre:
-            datos.get("nombre"),
-
-          telefono:
-            datos.get("telefono"),
-
-          departamento:
-            datos.get("departamento"),
-
-          ciudad:
-            datos.get("ciudad"),
-
-          direccion:
-            datos.get("direccion"),
-
-          barrio:
-            datos.get("barrio"),
-
-          talla:
-            datos.get("talla"),
-
-          notas:
-            datos.get("notas") || "",
-
-          producto:
-            "AirPet 2x1",
-
-          cantidad:
-            2,
-
-          valor:
-            89900,
-
-          metodo_pago:
-            "Contra entrega",
-
-          estado:
-            "Nuevo"
-
+          nombre:datos.get("nombre"),
+          telefono:datos.get("telefono"),
+          departamento:datos.get("departamento"),
+          ciudad:datos.get("ciudad"),
+          direccion:datos.get("direccion"),
+          barrio:datos.get("barrio"),
+          talla:datos.get("talla"),
+          notas:datos.get("notas") || "",
+          producto:"AirPet 2x1",
+          cantidad:2,
+          valor:89900,
+          metodo_pago:"Contra entrega",
+          estado:"Nuevo"
         };
 
-
-        try {
-
+        try{
 
           const respuesta =
             await fetch(
-
-              SUPABASE_URL +
-              "/rest/v1/pedidos_airpet",
-
+              SUPABASE_URL + "/rest/v1/pedidos_airpet",
               {
-
-                method:
-                  "POST",
-
-                headers: {
-
-                  "Content-Type":
-                    "application/json",
-
-                  "apikey":
-                    SUPABASE_KEY,
-
-                  "Authorization":
-                    "Bearer " +
-                    SUPABASE_KEY,
-
-                  "Prefer":
-                    "return=minimal"
-
+                method:"POST",
+                headers:{
+                  "Content-Type":"application/json",
+                  "apikey":SUPABASE_KEY,
+                  "Authorization":"Bearer " + SUPABASE_KEY,
+                  "Prefer":"return=minimal"
                 },
-
-                body:
-                  JSON.stringify(
-                    pedido
-                  )
-
+                body:JSON.stringify(pedido)
               }
-
             );
 
-
-          if (
-            !respuesta.ok
-          ) {
+          if(!respuesta.ok){
 
             const errorTexto =
               await respuesta.text();
 
+            console.error("Error Supabase:",errorTexto);
 
-            console.error(
-              "Error de Supabase:",
-              errorTexto
-            );
-
-
-            throw new Error(
-              "El pedido no pudo guardarse"
-            );
+            throw new Error("No se pudo guardar");
 
           }
 
-
-
-          /* =========================
-             WHATSAPP
-          ========================= */
-
-          const mensaje =
-
-`Hola, quiero confirmar mi pedido contra entrega de la promoción AirPet 2x1 por $89.900.
-
-Nombre: ${datos.get("nombre")}
-Teléfono: ${datos.get("telefono")}
-Departamento: ${datos.get("departamento")}
-Ciudad / Municipio: ${datos.get("ciudad")}
-Dirección: ${datos.get("direccion")}
-Barrio: ${datos.get("barrio")}
-Talla: ${datos.get("talla")}
-Referencia: ${datos.get("notas") || "Ninguna"}
-
-Quiero confirmar disponibilidad y envío.`;
-
-
-
-          const whatsapp =
-
-            "https://wa.me/573147636825?text=" +
-
-            encodeURIComponent(
-              mensaje
-            );
-
-
-
-          alert(
-            "✅ Tu pedido fue registrado correctamente."
-          );
-
+          alert("âœ… Tu pedido fue registrado correctamente.");
 
           formulario.reset();
-
-
           cerrarFormulario();
 
+        }catch(error){
 
-          window.open(
-            whatsapp,
-            "_blank"
-          );
+          console.error(error);
 
+          alert("No pudimos registrar tu pedido. Intenta nuevamente.");
 
-        } catch (error) {
+        }finally{
 
-
-          console.error(
-            error
-          );
-
-
-          alert(
-            "No pudimos registrar tu pedido. Por favor intenta nuevamente."
-          );
-
-
-        } finally {
-
-
-          botonEnviar.disabled =
-            false;
-
-
-          botonEnviar.textContent =
-            textoOriginal;
-
+          botonEnviar.disabled = false;
+          botonEnviar.textContent = textoOriginal;
 
         }
 
       }
-
     );
 
   }
 
-
 });
-
 </script>
-
 
 </body>
 </html>
