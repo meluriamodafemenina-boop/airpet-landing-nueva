@@ -96,3 +96,26 @@ body{
   .reviews-grid{grid-template-columns:1fr}
   .paw-section:before,.paw-section:after{font-size:44px}
 }
+/* =========================
+   ICONOS BENEFICIOS AIRPET
+========================= */
+
+.benefit-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.benefit-icon {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .benefit-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
