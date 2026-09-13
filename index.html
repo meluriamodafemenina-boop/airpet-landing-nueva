@@ -4,1529 +4,885 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#080808">
-  <title>AirPet | Importadora El RebajÃ³n</title>
-  <meta name="description" content="AirPet GPS para mascotas. PromociÃ³n 2x1 por tiempo limitado.">
+
+  <title>AirPet | Importadora El Rebaj&oacute;n</title>
+
+  <meta
+    name="description"
+    content="AirPet GPS para mascotas. Promoci&oacute;n 2x1 por tiempo limitado."
+  >
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-
-    :root{
-      --orange:#ff6a00;
-      --orange2:#ff8a00;
-      --black:#070707;
-      --black2:#101010;
-      --black3:#171717;
-      --white:#fff;
-      --gray:#a7a7a7;
-      --line:#2b2b2b;
-      --green:#1fad5c;
-      --gold:#ffc21c;
+    * {
+      box-sizing: border-box;
     }
 
-    body{
-      margin:0;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8a00;
+      --black: #070707;
+      --black2: #101010;
+      --black3: #171717;
+      --white: #ffffff;
+      --gray: #a7a7a7;
+      --line: #2b2b2b;
+      --green: #1fad5c;
+      --gold: #ffc21c;
+    }
+
+    body {
+      margin: 0;
       background:
-        radial-gradient(circle at 85% 8%,rgba(255,106,0,.12),transparent 23%),
-        radial-gradient(circle at 10% 30%,rgba(255,106,0,.06),transparent 20%),
+        radial-gradient(circle at 85% 8%, rgba(255,106,0,.12), transparent 23%),
+        radial-gradient(circle at 10% 30%, rgba(255,106,0,.06), transparent 20%),
         var(--black);
-      color:#fff;
-      font-family:'Montserrat',Arial,sans-serif;
-      padding-bottom:76px;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      padding-bottom: 76px;
     }
 
-    body.modal-open{overflow:hidden}
-    button,input,select,textarea{font-family:inherit}
-    img{max-width:100%}
-    a{text-decoration:none}
+    body.modal-open {
+      overflow: hidden;
+    }
 
-    .wrap{
-      width:min(1160px,calc(100% - 28px));
-      margin:auto;
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 28px));
+      margin: auto;
     }
 
     /* HEADER */
-    .top{
-      position:sticky;
-      top:0;
-      z-index:60;
-      background:rgba(7,7,7,.95);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid #1f1f1f;
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: rgba(7,7,7,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1f1f1f;
     }
 
-    .nav{
-      min-height:70px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .brand{
-      font-size:11px;
-      letter-spacing:.12em;
-      color:#ddd;
-      font-weight:700;
+    .brand {
+      font-size: 11px;
+      letter-spacing: .12em;
+      color: #ddd;
+      font-weight: 700;
     }
 
-    .brand b{
-      display:block;
-      font-size:21px;
-      color:white;
-      letter-spacing:-.02em;
-      margin-top:2px;
+    .brand b {
+      display: block;
+      font-size: 21px;
+      color: white;
+      letter-spacing: -.02em;
+      margin-top: 2px;
     }
 
-    .brand b::after{
-      content:"";
-      display:inline-block;
-      width:44px;
-      height:5px;
-      border-radius:10px;
-      margin-left:9px;
-      background:var(--orange);
-      vertical-align:middle;
+    .brand b::after {
+      content: "";
+      display: inline-block;
+      width: 44px;
+      height: 5px;
+      border-radius: 10px;
+      margin-left: 9px;
+      background: var(--orange);
+      vertical-align: middle;
     }
 
-    .trend{
-      border:1px solid #383838;
-      background:#151515;
-      border-radius:999px;
-      padding:10px 14px;
-      font-weight:800;
-      font-size:12px;
-      color:#fff;
+    .trend {
+      border: 1px solid #383838;
+      background: #151515;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 12px;
+      color: #fff;
     }
 
-    /* HERO - ESTILO POSTER GANADOR */
-    .hero{
-      padding:26px 0 34px;
+    /* HERO */
+
+    .hero {
+      padding: 26px 0 34px;
     }
 
-    .sales-poster{
-      position:relative;
-      overflow:hidden;
-      display:grid;
-      grid-template-columns:.92fr 1.08fr;
-      min-height:660px;
+    .sales-poster {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      min-height: 660px;
       background:
-        linear-gradient(125deg,rgba(255,106,0,.07),transparent 35%),
-        linear-gradient(145deg,#151515,#080808 70%);
-      border:1px solid #2c2c2c;
-      border-radius:26px;
-      box-shadow:0 40px 100px rgba(0,0,0,.5);
+        linear-gradient(125deg, rgba(255,106,0,.07), transparent 35%),
+        linear-gradient(145deg, #151515, #080808 70%);
+      border: 1px solid #2c2c2c;
+      border-radius: 26px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.5);
     }
 
-    .sales-poster::before{
-      content:"";
-      position:absolute;
-      width:420px;
-      height:420px;
-      right:-120px;
-      top:-120px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(255,106,0,.25),rgba(255,106,0,0) 65%);
-      pointer-events:none;
+    .sales-poster::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -120px;
+      top: -120px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255,106,0,.25),
+        rgba(255,106,0,0) 65%
+      );
+      pointer-events: none;
     }
 
-    .poster-copy{
-      padding:46px 38px 34px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      position:relative;
-      z-index:2;
+    .poster-copy {
+      padding: 46px 38px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
     }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      width:max-content;
-      padding:8px 12px;
-      border-radius:999px;
-      background:var(--orange);
-      color:#111;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.08em;
-      margin-bottom:18px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: #111;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      margin-bottom: 18px;
     }
 
-    .poster-copy h1{
-      margin:0;
-      font-size:clamp(44px,6vw,78px);
-      line-height:.94;
-      text-transform:uppercase;
-      letter-spacing:-.05em;
+    .poster-copy h1 {
+      margin: 0;
+      font-size: clamp(44px, 6vw, 78px);
+      line-height: .94;
+      text-transform: uppercase;
+      letter-spacing: -.05em;
     }
 
-    .poster-copy h1 span{
-      color:var(--orange);
+    .poster-copy h1 span {
+      color: var(--orange);
     }
 
-    .poster-sub{
-      color:#b8b8b8;
-      font-size:16px;
-      line-height:1.6;
-      max-width:500px;
-      margin:18px 0 22px;
+    .poster-sub {
+      color: #b8b8b8;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 18px 0 22px;
     }
 
-    .rating{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:18px;
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
-    .rating .stars{
-      color:var(--gold);
-      letter-spacing:2px;
-      font-size:19px;
+    .rating .stars {
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 19px;
     }
 
-    .rating strong{
-      font-size:14px;
-      color:#fff;
+    .rating strong {
+      font-size: 14px;
+      color: #fff;
     }
 
-    .price-box{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:14px;
-      align-items:end;
-      margin:7px 0 18px;
+    .price-box {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: end;
+      margin: 7px 0 18px;
     }
 
-    .before{
-      background:#151515;
-      border:1px solid #303030;
-      border-radius:12px;
-      padding:11px 12px;
+    .before {
+      background: #151515;
+      border: 1px solid #303030;
+      border-radius: 12px;
+      padding: 11px 12px;
     }
 
-    .before span{
-      display:block;
-      color:#888;
-      font-size:10px;
-      font-weight:700;
+    .before span {
+      display: block;
+      color: #888;
+      font-size: 10px;
+      font-weight: 700;
     }
 
-    .before s{
-      color:#b7b7b7;
-      font-size:17px;
-      font-weight:800;
+    .before s {
+      color: #b7b7b7;
+      font-size: 17px;
+      font-weight: 800;
     }
 
-    .now{
-      background:linear-gradient(135deg,var(--orange2),var(--orange));
-      color:#111;
-      border-radius:15px;
-      padding:13px 18px;
-      position:relative;
+    .now {
+      background: linear-gradient(
+        135deg,
+        var(--orange2),
+        var(--orange)
+      );
+      color: #111;
+      border-radius: 15px;
+      padding: 13px 18px;
+      position: relative;
     }
 
-    .now small{
-      display:block;
-      font-weight:900;
-      font-size:11px;
-      letter-spacing:.08em;
+    .now small {
+      display: block;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: .08em;
     }
 
-    .now strong{
-      display:block;
-      font-size:clamp(38px,5vw,56px);
-      line-height:1;
-      letter-spacing:-.04em;
+    .now strong {
+      display: block;
+      font-size: clamp(38px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -.04em;
     }
 
-    .save{
-      color:var(--orange2);
-      font-weight:800;
-      margin-bottom:18px;
-      font-size:13px;
+    .save {
+      color: var(--orange2);
+      font-weight: 800;
+      margin-bottom: 18px;
+      font-size: 13px;
     }
 
-    .poster-benefits{
-      display:grid;
-      gap:12px;
-      margin:12px 0 24px;
+    .poster-benefits {
+      display: grid;
+      gap: 12px;
+      margin: 12px 0 24px;
     }
 
-    .poster-benefit{
-      display:grid;
-      grid-template-columns:48px 1fr;
-      align-items:center;
-      gap:12px;
-      padding:11px 12px;
-      border:1px solid #292929;
-      border-radius:14px;
-      background:#111;
+    .poster-benefit {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 12px;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      background: #111;
     }
 
-    .poster-benefit img{
-      width:48px;
-      height:48px;
-      object-fit:contain;
-      border-radius:10px;
+    .poster-benefit img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 10px;
     }
 
-    .poster-benefit b{
-      display:block;
-      font-size:14px;
-      color:#fff;
+    .poster-benefit b {
+      display: block;
+      font-size: 14px;
+      color: #fff;
     }
 
-    .poster-benefit span{
-      color:#8f8f8f;
-      font-size:12px;
-      line-height:1.4;
+    .poster-benefit span {
+      color: #8f8f8f;
+      font-size: 12px;
+      line-height: 1.4;
     }
 
-    .poster-visual{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:34px;
-      min-width:0;
+    .poster-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+      min-width: 0;
     }
 
-    .poster-visual::after{
-      content:"";
-      position:absolute;
-      inset:auto 10% 8% 10%;
-      height:90px;
-      background:radial-gradient(ellipse,rgba(255,106,0,.25),transparent 70%);
-      filter:blur(12px);
-      pointer-events:none;
+    .poster-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto 10% 8% 10%;
+      height: 90px;
+      background: radial-gradient(
+        ellipse,
+        rgba(255,106,0,.25),
+        transparent 70%
+      );
+      filter: blur(12px);
+      pointer-events: none;
     }
 
-    .hero-product{
-      width:min(100%,610px);
-      border-radius:22px;
-      position:relative;
-      z-index:2;
-      box-shadow:0 28px 70px rgba(0,0,0,.45);
+    .hero-product {
+      width: min(100%, 610px);
+      border-radius: 22px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 28px 70px rgba(0,0,0,.45);
     }
 
-    .trust-strip{
-      grid-column:1/-1;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:1px;
-      background:#2a2a2a;
-      border-top:1px solid #2b2b2b;
+    .trust-strip {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #2a2a2a;
+      border-top: 1px solid #2b2b2b;
     }
 
-    .trust-item{
-      background:#0c0c0c;
-      padding:16px 10px;
-      text-align:center;
-      font-weight:800;
-      font-size:12px;
-      color:#efefef;
+    .trust-item {
+      background: #0c0c0c;
+      padding: 16px 10px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 12px;
+      color: #efefef;
     }
 
-    .trust-item span{
-      color:var(--orange);
-      margin-right:5px;
+    .trust-item span {
+      color: var(--orange);
+      margin-right: 5px;
     }
 
-    /* ACCIONES */
-    .cta-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:6px;
+    /* BOTONES */
+
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 6px;
     }
 
-    .btn{
-      min-height:54px;
-      border:none;
-      border-radius:13px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 16px;
-      font-weight:900;
-      font-size:14px;
-      cursor:pointer;
-      transition:.18s;
+    .btn {
+      min-height: 54px;
+      border: none;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 16px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .18s;
     }
 
-    .btn:hover{transform:translateY(-2px)}
-
-    .wa{
-      background:var(--green);
-      color:#fff;
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
-    .cod{
-      background:linear-gradient(135deg,var(--orange2),var(--orange));
-      color:#111;
+    .wa {
+      background: var(--green);
+      color: #fff;
     }
 
-    /* GALERIA */
-    .gallery-section{
-      padding:44px 0 64px;
+    .cod {
+      background: linear-gradient(
+        135deg,
+        var(--orange2),
+        var(--orange)
+      );
+      color: #111;
     }
 
-    .section-title{
-      text-align:center;
-      margin-bottom:24px;
+    /* GALER&Iacute;A */
+
+    .gallery-section {
+      padding: 44px 0 64px;
     }
 
-    .section-title .kicker{
-      color:var(--orange);
-      font-size:11px;
-      letter-spacing:.12em;
-      font-weight:900;
+    .section-title {
+      text-align: center;
+      margin-bottom: 24px;
     }
 
-    .section-title h2{
-      font-size:clamp(32px,4vw,48px);
-      margin:8px 0;
-      letter-spacing:-.04em;
+    .section-title .kicker {
+      color: var(--orange);
+      font-size: 11px;
+      letter-spacing: .12em;
+      font-weight: 900;
     }
 
-    .section-title p{
-      color:#9b9b9b;
-      max-width:680px;
-      margin:0 auto;
-      line-height:1.65;
+    .section-title h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin: 8px 0;
+      letter-spacing: -.04em;
     }
 
-    .gallery-card{
-      background:#111;
-      border:1px solid #292929;
-      border-radius:24px;
-      padding:14px;
-      max-width:820px;
-      margin:auto;
+    .section-title p {
+      color: #9b9b9b;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.65;
     }
 
-    .main-img{
-      width:100%;
-      aspect-ratio:1/1;
-      object-fit:cover;
-      display:block;
-      border-radius:18px;
+    .gallery-card {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 24px;
+      padding: 14px;
+      max-width: 820px;
+      margin: auto;
     }
 
-    .thumbs{
-      display:flex;
-      gap:10px;
-      overflow-x:auto;
-      margin-top:12px;
-      padding-bottom:3px;
+    .main-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
     }
 
-    .thumb{
-      flex:0 0 82px;
-      padding:3px;
-      background:#171717;
-      border:2px solid transparent;
-      border-radius:11px;
-      cursor:pointer;
+    .thumbs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      margin-top: 12px;
+      padding-bottom: 3px;
     }
 
-    .thumb.active{
-      border-color:var(--orange);
+    .thumb {
+      flex: 0 0 82px;
+      padding: 3px;
+      background: #171717;
+      border: 2px solid transparent;
+      border-radius: 11px;
+      cursor: pointer;
     }
 
-    .thumb img{
-      width:100%;
-      aspect-ratio:1/1;
-      object-fit:cover;
-      border-radius:7px;
-      display:block;
+    .thumb.active {
+      border-color: var(--orange);
+    }
+
+    .thumb img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 7px;
+      display: block;
     }
 
     /* BENEFICIOS */
-    .benefits{
-      padding:74px 0;
-      background:#0b0b0b;
-      border-top:1px solid #1d1d1d;
-      border-bottom:1px solid #1d1d1d;
+
+    .benefits {
+      padding: 74px 0;
+      background: #0b0b0b;
+      border-top: 1px solid #1d1d1d;
+      border-bottom: 1px solid #1d1d1d;
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:34px;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 34px;
     }
 
-    .cards article{
-      min-height:210px;
-      padding:23px;
-      background:linear-gradient(145deg,#171717,#101010);
-      border:1px solid #2a2a2a;
-      border-radius:18px;
+    .cards article {
+      min-height: 210px;
+      padding: 23px;
+      background: linear-gradient(145deg, #171717, #101010);
+      border: 1px solid #2a2a2a;
+      border-radius: 18px;
     }
 
-    .benefit-title{
-      display:flex;
-      align-items:center;
-      gap:13px;
-      color:#fff;
-      font-size:17px;
-      line-height:1.25;
+    .benefit-title {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #fff;
+      font-size: 17px;
+      line-height: 1.25;
     }
 
-    .benefit-icon{
-      width:52px;
-      height:52px;
-      object-fit:contain;
-      flex-shrink:0;
-      border-radius:12px;
+    .benefit-icon {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 12px;
     }
 
-    .cards p{
-      color:#9c9c9c;
-      line-height:1.65;
-      font-size:14px;
-      margin-top:16px;
+    .cards p {
+      color: #9c9c9c;
+      line-height: 1.65;
+      font-size: 14px;
+      margin-top: 16px;
     }
 
-    /* DESCRIPCION */
-    .included{
-      padding:78px 0;
+    /* DESCRIPCI&Oacute;N */
+
+    .included {
+      padding: 78px 0;
     }
 
     .included h2,
     .reviews h2,
     .faq h2,
-    .final h2{
-      font-size:clamp(31px,4vw,48px);
-      line-height:1.05;
-      letter-spacing:-.035em;
-      margin:0 0 12px;
+    .final h2 {
+      font-size: clamp(31px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      margin: 0 0 12px;
     }
 
-    .included p{
-      max-width:860px;
-      color:#aaa;
-      line-height:1.8;
-      font-size:17px;
+    .included p {
+      max-width: 860px;
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 17px;
     }
 
-    .included b{color:var(--orange)}
+    .included b {
+      color: var(--orange);
+    }
 
-    /* REVIEWS */
-    .reviews{
-      padding:78px 0;
+    /* TESTIMONIOS */
+
+    .reviews {
+      padding: 78px 0;
       background:
-        radial-gradient(circle at 8% 50%,rgba(255,106,0,.08),transparent 24%),
+        radial-gradient(circle at 8% 50%, rgba(255,106,0,.08), transparent 24%),
         #0c0c0c;
     }
 
-    .section-kicker{
-      color:var(--orange);
-      font-size:11px;
-      letter-spacing:.12em;
-      font-weight:900;
-      margin-bottom:10px;
+    .section-kicker {
+      color: var(--orange);
+      font-size: 11px;
+      letter-spacing: .12em;
+      font-weight: 900;
+      margin-bottom: 10px;
     }
 
-    .sub{
-      color:#9c9c9c;
-      line-height:1.65;
+    .sub {
+      color: #9c9c9c;
+      line-height: 1.65;
     }
 
-    .reviews-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:16px;
-      margin-top:32px;
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
     }
 
-    .review-card{
-      background:#151515;
-      border:1px solid #2b2b2b;
-      border-radius:18px;
-      padding:22px;
+    .review-card {
+      background: #151515;
+      border: 1px solid #2b2b2b;
+      border-radius: 18px;
+      padding: 22px;
     }
 
-    .review-card .stars{
-      color:var(--gold);
-      letter-spacing:2px;
-      font-size:19px;
+    .review-card .stars {
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 19px;
     }
 
-    .review-card p{
-      color:#aaa;
-      line-height:1.65;
+    .review-card p {
+      color: #aaa;
+      line-height: 1.65;
     }
 
-    .review-card b{
-      display:block;
-      color:#fff;
-      margin-top:12px;
+    .review-card b {
+      display: block;
+      color: #fff;
+      margin-top: 12px;
     }
 
-    .review-card span{
-      color:var(--orange);
-      display:block;
-      margin-top:4px;
-      font-size:13px;
+    .review-card span {
+      color: var(--orange);
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
     }
 
     /* FAQ */
-    .faq{
-      padding:78px 0;
+
+    .faq {
+      padding: 78px 0;
     }
 
-    .faq details{
-      background:#111;
-      border:1px solid #292929;
-      border-radius:14px;
-      padding:18px 20px;
-      margin:10px 0;
+    .faq details {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 10px 0;
     }
 
-    .faq summary{
-      cursor:pointer;
-      font-weight:800;
-      color:#fff;
+    .faq summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: #fff;
     }
 
-    .faq p{
-      color:#9f9f9f;
-      line-height:1.6;
+    .faq p {
+      color: #9f9f9f;
+      line-height: 1.6;
     }
 
     /* FINAL */
-    .final{
-      text-align:center;
-      padding:72px 0 110px;
-      border-top:1px solid #272727;
+
+    .final {
+      text-align: center;
+      padding: 72px 0 110px;
+      border-top: 1px solid #272727;
       background:
-        linear-gradient(135deg,rgba(255,106,0,.22),transparent 40%),
+        linear-gradient(135deg, rgba(255,106,0,.22), transparent 40%),
         #080808;
     }
 
-    .final .pill{
-      display:inline-flex;
-      background:var(--orange);
-      color:#111;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.08em;
-      padding:9px 13px;
-      border-radius:999px;
+    .final .pill {
+      display: inline-flex;
+      background: var(--orange);
+      color: #111;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      padding: 9px 13px;
+      border-radius: 999px;
     }
 
-    .final h2{
-      margin-top:18px;
-      text-transform:uppercase;
-      font-size:clamp(42px,6vw,70px);
+    .final h2 {
+      margin-top: 18px;
+      text-transform: uppercase;
+      font-size: clamp(42px, 6vw, 70px);
     }
 
     /* MODAL */
-    .modal{
-      position:fixed;
-      inset:0;
-      z-index:100;
-      background:rgba(0,0,0,.84);
-      backdrop-filter:blur(8px);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0,0,0,.84);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
     }
 
-    .modal.open{display:flex}
-
-    .modal-card{
-      position:relative;
-      width:min(680px,100%);
-      max-height:92vh;
-      overflow:auto;
-      background:#121212;
-      border:1px solid #333;
-      border-radius:22px;
-      padding:28px;
-      color:#fff;
+    .modal.open {
+      display: flex;
     }
 
-    .close{
-      position:absolute;
-      right:16px;
-      top:9px;
-      border:0;
-      background:transparent;
-      color:#fff;
-      font-size:36px;
-      cursor:pointer;
+    .modal-card {
+      position: relative;
+      width: min(680px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: #121212;
+      border: 1px solid #333;
+      border-radius: 22px;
+      padding: 28px;
+      color: #fff;
     }
 
-    .modal-card h2{
-      margin-top:0;
-      font-size:30px;
+    .close {
+      position: absolute;
+      right: 16px;
+      top: 9px;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 36px;
+      cursor: pointer;
     }
 
-    .modal-card>p{color:#aaa}
-
-    .size-guide{
-      width:100%;
-      border-radius:14px;
-      margin:12px 0 20px;
+    .modal-card h2 {
+      margin-top: 0;
+      font-size: 30px;
     }
 
-    .modal label{
-      display:block;
-      color:#ddd;
-      font-weight:700;
-      font-size:13px;
-      margin:13px 0;
+    .modal-card > p {
+      color: #aaa;
+    }
+
+    .size-guide {
+      width: 100%;
+      border-radius: 14px;
+      margin: 12px 0 20px;
+    }
+
+    .modal label {
+      display: block;
+      color: #ddd;
+      font-weight: 700;
+      font-size: 13px;
+      margin: 13px 0;
     }
 
     .modal input,
     .modal select,
-    .modal textarea{
-      width:100%;
-      margin-top:7px;
-      padding:14px;
-      border:1px solid #333;
-      border-radius:10px;
-      background:#090909;
-      color:#fff;
-      outline:none;
+    .modal textarea {
+      width: 100%;
+      margin-top: 7px;
+      padding: 14px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background: #090909;
+      color: #fff;
+      outline: none;
     }
 
     .modal input:focus,
     .modal select:focus,
-    .modal textarea:focus{
-      border-color:var(--orange);
+    .modal textarea:focus {
+      border-color: var(--orange);
     }
 
-    /* STICKY MOBILE */
-    .sticky{display:none}
+    /* STICKY */
 
-    @media(max-width:900px){
-      .sales-poster{
-        grid-template-columns:1fr;
+    .sticky {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+
+      .sales-poster {
+        grid-template-columns: 1fr;
       }
 
-      .poster-visual{
-        order:-1;
-        padding:22px 22px 6px;
+      .poster-visual {
+        order: -1;
+        padding: 22px 22px 6px;
       }
 
-      .poster-copy{
-        padding:24px 22px 28px;
+      .poster-copy {
+        padding: 24px 22px 28px;
       }
 
-      .poster-copy h1{
-        font-size:clamp(42px,12vw,66px);
+      .poster-copy h1 {
+        font-size: clamp(42px, 12vw, 66px);
       }
 
-      .trust-strip{
-        grid-template-columns:1fr 1fr;
+      .trust-strip {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .cards{
-        grid-template-columns:1fr 1fr;
+      .cards {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media(max-width:600px){
-      .wrap{width:min(100% - 20px,1160px)}
+    @media (max-width: 600px) {
 
-      .nav{min-height:64px}
-
-      .brand{font-size:9px}
-      .brand b{font-size:15px}
-
-      .trend{
-        font-size:9px;
-        padding:8px 9px;
+      .wrap {
+        width: min(100% - 20px, 1160px);
       }
 
-      .hero{padding-top:16px}
-
-      .sales-poster{
-        border-radius:20px;
-        min-height:0;
+      .nav {
+        min-height: 64px;
       }
 
-      .poster-visual{
-        padding:12px 12px 4px;
+      .brand {
+        font-size: 9px;
       }
 
-      .hero-product{
-        border-radius:15px;
+      .brand b {
+        font-size: 15px;
       }
 
-      .poster-copy{
-        padding:22px 16px 24px;
+      .trend {
+        font-size: 9px;
+        padding: 8px 9px;
       }
 
-      .eyebrow{
-        font-size:9px;
-        padding:7px 10px;
+      .hero {
+        padding-top: 16px;
       }
 
-      .poster-copy h1{
-        font-size:42px;
+      .sales-poster {
+        border-radius: 20px;
+        min-height: 0;
       }
 
-      .poster-sub{
-        font-size:14px;
-        margin:14px 0 18px;
+      .poster-visual {
+        padding: 12px 12px 4px;
       }
 
-      .price-box{
-        grid-template-columns:1fr;
+      .hero-product {
+        border-radius: 15px;
       }
 
-      .before{
-        width:max-content;
+      .poster-copy {
+        padding: 22px 16px 24px;
       }
 
-      .now strong{
-        font-size:44px;
+      .eyebrow {
+        font-size: 9px;
+        padding: 7px 10px;
       }
 
-      .poster-benefit{
-        grid-template-columns:44px 1fr;
+      .poster-copy h1 {
+        font-size: 42px;
       }
 
-      .poster-benefit img{
-        width:44px;
-        height:44px;
+      .poster-sub {
+        font-size: 14px;
+        margin: 14px 0 18px;
       }
 
-      .cta-row{
-        grid-template-columns:1fr;
+      .price-box {
+        grid-template-columns: 1fr;
       }
 
-      .trust-strip{
-        grid-template-columns:1fr 1fr;
+      .before {
+        width: max-content;
       }
 
-      .trust-item{
-        font-size:10px;
-        padding:13px 8px;
+      .now strong {
+        font-size: 44px;
       }
 
-      .gallery-section{
-        padding:34px 0 52px;
+      .poster-benefit {
+        grid-template-columns: 44px 1fr;
       }
 
-      .gallery-card{
-        padding:9px;
-        border-radius:18px;
+      .poster-benefit img {
+        width: 44px;
+        height: 44px;
       }
 
-      .main-img{
-        border-radius:13px;
+      .cta-row {
+        grid-template-columns: 1fr;
       }
 
-      .thumb{
-        flex-basis:68px;
+      .trust-strip {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .cards{
-        grid-template-columns:1fr;
-      }
-
-      .benefit-icon{
-        width:46px;
-        height:46px;
-      }
-
-      .reviews-grid{
-        grid-template-columns:1fr;
-      }
-
-      .benefits,
-      .reviews,
-      .included,
-      .faq{
-        padding-top:54px;
-        padding-bottom:54px;
-      }
-
-      .sticky{
-        position:fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        z-index:70;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:10px;
-        background:rgba(8,8,8,.97);
-        backdrop-filter:blur(14px);
-        border-top:1px solid #2c2c2c;
-        padding:10px 13px;
-      }
-
-      .sticky span{
-        display:flex;
-        flex-direction:column;
-      }
-
-      .sticky b{
-        font-size:16px;
-        color:#fff;
-      }
-
-      .sticky small{
-        color:var(--orange);
-        font-size:10px;
-      }
-
-      .sticky button{
-        border:0;
-        border-radius:11px;
-        padding:13px 17px;
-        background:var(--orange);
-        color:#111;
-        font-weight:900;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header class="top">
-  <div class="wrap nav">
-    <div class="brand">
-      IMPORTADORA
-      <b>EL REBAJÃ“N</b>
-    </div>
-    <span class="trend">ðŸ”¥ Producto en tendencia</span>
-  </div>
-</header>
-
-<main>
-
-<section class="hero wrap">
-
-  <div class="sales-poster">
-
-    <div class="poster-copy">
-
-      <span class="eyebrow">OFERTA POR TIEMPO LIMITADO</span>
-
-      <h1>
-        TU MASCOTA
-        <span>SIEMPRE SEGURA</span>
-      </h1>
-
-      <p class="poster-sub">
-        AirPet GPS te ayuda a tener una referencia de ubicaciÃ³n de tu mascota
-        mientras disfruta sus paseos y aventuras.
-      </p>
-
-      <div class="rating">
-        <span class="stars">â˜…â˜…â˜…â˜…â˜…</span>
-        <strong>4.95/5</strong>
-      </div>
-
-      <div class="price-box">
-        <div class="before">
-          <span>ANTES</span>
-          <s>$145.900</s>
-        </div>
-
-        <div class="now">
-          <small>AHORA Â· COMPRA 2 POR 1</small>
-          <strong>$89.900</strong>
-        </div>
-      </div>
-
-      <div class="save">AHORRAS $56.000</div>
-
-      <div class="poster-benefits">
-
-        <div class="poster-benefit">
-          <img src="assets/gps.png" alt="GPS">
-          <div>
-            <b>GPS en tiempo real</b>
-            <span>Una herramienta extra para localizar a tu mascota.</span>
-          </div>
-        </div>
-
-        <div class="poster-benefit">
-          <img src="assets/agua.png" alt="Resistente al agua">
-          <div>
-            <b>Resistente al agua</b>
-            <span>Preparado para lluvia, salpicaduras y paseos.</span>
-          </div>
-        </div>
-
-        <div class="poster-benefit">
-          <img src="assets/reflectiva.png" alt="Correa reflectiva">
-          <div>
-            <b>Correa reflectiva</b>
-            <span>Mayor visibilidad durante caminatas nocturnas.</span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="cta-row">
-        <a
-          class="btn wa"
-          href="https://wa.me/573147636825?text=Hola%2C%20quiero%20pedir%20la%20promoci%C3%B3n%202x1%20de%20AirPet%20por%20%2489.900"
-          target="_blank"
-          rel="noopener"
-        >
-          Pedir por WhatsApp
-        </a>
-
-        <button class="btn cod" id="showForm" type="button">
-          PEDIR AHORA
-        </button>
-      </div>
-
-    </div>
-
-    <div class="poster-visual">
-      <img
-        src="assets/01-principal.jpg"
-        alt="AirPet GPS para mascotas"
-        class="hero-product"
-      >
-    </div>
-
-    <div class="trust-strip">
-      <div class="trust-item"><span>â—</span>EnvÃ­os a toda Colombia</div>
-      <div class="trust-item"><span>â—</span>Pago contra entrega</div>
-      <div class="trust-item"><span>â—</span>Compra segura</div>
-      <div class="trust-item"><span>â—</span>6 meses de garantÃ­a</div>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="gallery-section wrap">
-
-  <div class="section-title">
-    <div class="kicker">CONOCE AIRPET</div>
-    <h2>Mira cada detalle antes de pedir</h2>
-    <p>
-      Toca las imÃ¡genes para ver el producto, su soporte, la correa reflectiva
-      y la guÃ­a de tallas.
-    </p>
-  </div>
-
-  <div class="gallery-card">
-
-    <img
-      id="mainImg"
-      class="main-img"
-      src="assets/01-principal.jpg"
-      alt="AirPet GPS para mascotas"
-    >
-
-    <div class="thumbs">
-
-      <button type="button" class="thumb active" data-src="assets/01-principal.jpg">
-        <img src="assets/01-principal.jpg" alt="AirPet">
-      </button>
-
-      <button type="button" class="thumb" data-src="assets/02-gps.jpg">
-        <img src="assets/02-gps.jpg" alt="GPS">
-      </button>
-
-      <button type="button" class="thumb" data-src="assets/03-reflectiva.jpg">
-        <img src="assets/03-reflectiva.jpg" alt="Reflectiva">
-      </button>
-
-      <button type="button" class="thumb" data-src="assets/04-detalles.jpg">
-        <img src="assets/04-detalles.jpg" alt="Detalles">
-      </button>
-
-      <button type="button" class="thumb" data-src="assets/05-tallas.jpg">
-        <img src="assets/05-tallas.jpg" alt="Tallas">
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="benefits">
-
-  <div class="wrap">
-
-    <div class="section-title">
-      <div class="kicker">BENEFICIOS</div>
-      <h2>DiseÃ±ado para acompaÃ±ar a tu mascota</h2>
-      <p>
-        TecnologÃ­a, comodidad, resistencia y respaldo en un solo producto.
-      </p>
-    </div>
-
-    <div class="cards">
-
-      <article>
-        <b class="benefit-title">
-          <img src="assets/gps.png" class="benefit-icon" alt="GPS">
-          GPS en tiempo real
-        </b>
-        <p>Localiza a tu mascota y ten una herramienta extra cuando se aleje.</p>
-      </article>
-
-      <article>
-        <b class="benefit-title">
-          <img src="assets/bateria.png" class="benefit-icon" alt="BaterÃ­a">
-          Hasta 6 dÃ­as de baterÃ­a
-        </b>
-        <p>AutonomÃ­a para acompaÃ±ar su rutina durante varios dÃ­as.</p>
-      </article>
-
-      <article>
-        <b class="benefit-title">
-          <img src="assets/agua.png" class="benefit-icon" alt="Agua">
-          Resistente al agua
-        </b>
-        <p>Preparado para lluvia, salpicaduras y diferentes tipos de terreno.</p>
-      </article>
-
-      <article>
-        <b class="benefit-title">
-          <img src="assets/reflectiva.png" class="benefit-icon" alt="Reflectiva">
-          Correa reflectiva
-        </b>
-        <p>Mejora su visibilidad durante caminatas nocturnas.</p>
-      </article>
-
-      <article>
-        <b class="benefit-title">
-          <img src="assets/comodidad.png" class="benefit-icon" alt="Comodidad">
-          CÃ³modo y ajustable
-        </b>
-        <p>Acolchado suave y diferentes tallas para mayor comodidad.</p>
-      </article>
-
-      <article>
-        <b class="benefit-title">
-          <img src="assets/garantia.png" class="benefit-icon" alt="GarantÃ­a">
-          6 meses de garantÃ­a
-        </b>
-        <p>Compra con respaldo y mayor tranquilidad.</p>
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="included wrap">
-
-  <h2>MÃ¡s que un collar. Una capa extra de tranquilidad.</h2>
-
-  <p>
-    AirPet incluye el localizador GPS, soporte resistente y correa reflectiva,
-    cÃ³moda y ajustable. La promociÃ³n actual incluye
-    <b>2 AirPet por $89.900</b>.
-  </p>
-
-</section>
-
-<section class="reviews">
-
-  <div class="wrap">
-
-    <div class="section-kicker">EXPERIENCIAS DE CLIENTES</div>
-
-    <h2>Lo que dicen quienes ya lo probaron</h2>
-
-    <p class="sub">
-      Testimonios de demostraciÃ³n para esta versiÃ³n de prueba.
-    </p>
-
-    <div class="reviews-grid">
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œMe dio mucha tranquilidad tener una referencia de ubicaciÃ³n cuando salimos al parque.â€</p>
-        <b>MarÃ­a Camila</b>
-        <span>MedellÃ­n</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œLa correa se siente resistente y el reflectivo se nota muchÃ­simo en la noche.â€</p>
-        <b>JosÃ© ArbelÃ¡ez</b>
-        <span>BogotÃ¡</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œEl pedido fue sencillo y pagar contra entrega me dio mucha confianza.â€</p>
-        <b>Laura GÃ³mez</b>
-        <span>Cali</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œComprÃ© la promociÃ³n para mis dos perros y quedÃ© muy contenta.â€</p>
-        <b>Andrea MartÃ­nez</b>
-        <span>Barranquilla</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œEl collar es cÃ³modo, ajustable y se siente de muy buena calidad.â€</p>
-        <b>Daniela RÃ­os</b>
-        <span>Manizales</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œMe gustÃ³ poder escoger fÃ¡cilmente la talla antes de realizar el pedido.â€</p>
-        <b>Santiago LÃ³pez</b>
-        <span>Pereira</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œSe ve bonito puesto y me parece muy Ãºtil para una mascota que sale bastante.â€</p>
-        <b>Valentina PÃ©rez</b>
-        <span>Cartagena</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œLa atenciÃ³n fue clara y el proceso de compra muy rÃ¡pido.â€</p>
-        <b>Camilo HernÃ¡ndez</b>
-        <span>Bucaramanga</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œEl 2x1 fue perfecto porque tengo dos gatos.â€</p>
-        <b>Natalia Torres</b>
-        <span>IbaguÃ©</span>
-      </article>
-
-      <article class="review-card">
-        <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
-        <p>â€œMe gustÃ³ la seguridad que transmite poder pagar cuando recibes.â€</p>
-        <b>Paola RamÃ­rez</b>
-        <span>La Dorada</span>
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="faq wrap">
-
-  <h2>Preguntas frecuentes</h2>
-
-  <details>
-    <summary>Â¿CuÃ¡nto dura la baterÃ­a?</summary>
-    <p>Hasta 6 dÃ­as, segÃºn las condiciones de uso.</p>
-  </details>
-
-  <details>
-    <summary>Â¿Es resistente al agua?</summary>
-    <p>
-      SÃ­. EstÃ¡ pensado para acompaÃ±ar a tu mascota en diferentes terrenos
-      y situaciones cotidianas.
-    </p>
-  </details>
-
-  <details>
-    <summary>Â¿CÃ³mo elijo la talla?</summary>
-    <p>
-      Al abrir el formulario podrÃ¡s consultar la guÃ­a de tallas antes de realizar tu pedido.
-    </p>
-  </details>
-
-  <details>
-    <summary>Â¿Tiene garantÃ­a?</summary>
-    <p>SÃ­. AirPet incluye 6 meses de garantÃ­a.</p>
-  </details>
-
-</section>
-
-<section class="final">
-  <div class="wrap">
-    <span class="pill">OFERTA POR TIEMPO LIMITADO</span>
-    <h2>Protege a tu mascota</h2>
-  </div>
-</section>
-
-</main>
-
-<div class="modal" id="orderModal" aria-hidden="true">
-
-  <div class="modal-card">
-
-    <button type="button" class="close" id="closeForm">Ã—</button>
-
-    <h2>Pedido contra entrega</h2>
-
-    <p>Completa tus datos para solicitar tu AirPet.</p>
-
-    <img class="size-guide" src="assets/05-tallas.jpg" alt="GuÃ­a de tallas">
-
-    <form id="orderForm">
-
-      <label>
-        Nombre completo
-        <input required name="nombre" autocomplete="name">
-      </label>
-
-      <label>
-        TelÃ©fono / WhatsApp
-        <input required name="telefono" inputmode="tel">
-      </label>
-
-      <label>
-        Departamento
-        <input required name="departamento">
-      </label>
-
-      <label>
-        Ciudad / municipio
-        <input required name="ciudad">
-      </label>
-
-      <label>
-        DirecciÃ³n completa
-        <input required name="direccion">
-      </label>
-
-      <label>
-        Barrio
-        <input required name="barrio">
-      </label>
-
-      <label>
-        Talla
-        <select required name="talla">
-          <option value="">Selecciona</option>
-          <option>XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-      </label>
-
-      <label>
-        Referencia o indicaciones
-        <textarea name="notas" rows="3"></textarea>
-      </label>
-
-      <button class="btn cod" type="submit">Confirmar pedido</button>
-
-    </form>
-
-  </div>
-
-</div>
-
-<div class="sticky">
-  <span>
-    <b>2Ã—1 $89.900</b>
-    <small>Oferta limitada</small>
-  </span>
-
-  <button type="button" id="stickyOrder">PEDIR AHORA</button>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded",function(){
-
-  const SUPABASE_URL =
-    "https://xfqweayllizidwikvqah.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_nZx_ElmZ4GCry-ckviWc-Q_Iyw_EwqO";
-
-  const mainImg =
-    document.getElementById("mainImg");
-
-  const thumbnails =
-    document.querySelectorAll(".thumb");
-
-  thumbnails.forEach(function(thumb){
-
-    thumb.addEventListener("click",function(){
-
-      thumbnails.forEach(function(item){
-        item.classList.remove("active");
-      });
-
-      thumb.classList.add("active");
-
-      const nuevaImagen =
-        thumb.getAttribute("data-src");
-
-      if(mainImg && nuevaImagen){
-        mainImg.src = nuevaImagen;
-      }
-
-    });
-
-  });
-
-  const modal =
-    document.getElementById("orderModal");
-
-  const botonPedido =
-    document.getElementById("showForm");
-
-  const botonSticky =
-    document.getElementById("stickyOrder");
-
-  const botonCerrar =
-    document.getElementById("closeForm");
-
-  function abrirFormulario(){
-    if(!modal)return;
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden","false");
-    document.body.classList.add("modal-open");
-  }
-
-  function cerrarFormulario(){
-    if(!modal)return;
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden","true");
-    document.body.classList.remove("modal-open");
-  }
-
-  if(botonPedido){
-    botonPedido.addEventListener("click",abrirFormulario);
-  }
-
-  if(botonSticky){
-    botonSticky.addEventListener("click",abrirFormulario);
-  }
-
-  if(botonCerrar){
-    botonCerrar.addEventListener("click",cerrarFormulario);
-  }
-
-  if(modal){
-    modal.addEventListener("click",function(event){
-      if(event.target===modal){
-        cerrarFormulario();
-      }
-    });
-  }
-
-  document.addEventListener("keydown",function(event){
-    if(event.key==="Escape"){
-      cerrarFormulario();
-    }
-  });
-
-  const formulario =
-    document.getElementById("orderForm");
-
-  if(formulario){
-
-    formulario.addEventListener(
-      "submit",
-      async function(event){
-
-        event.preventDefault();
-
-        const botonEnviar =
-          formulario.querySelector('button[type="submit"]');
-
-        const textoOriginal =
-          botonEnviar.textContent;
-
-        botonEnviar.disabled = true;
-        botonEnviar.textContent = "Registrando pedido...";
-
-        const datos =
-          new FormData(formulario);
-
-        const pedido = {
-          nombre:datos.get("nombre"),
-          telefono:datos.get("telefono"),
-          departamento:datos.get("departamento"),
-          ciudad:datos.get("ciudad"),
-          direccion:datos.get("direccion"),
-          barrio:datos.get("barrio"),
-          talla:datos.get("talla"),
-          notas:datos.get("notas") || "",
-          producto:"AirPet 2x1",
-          cantidad:2,
-          valor:89900,
-          metodo_pago:"Contra entrega",
-          estado:"Nuevo"
-        };
-
-        try{
-
-          const respuesta =
-            await fetch(
-              SUPABASE_URL + "/rest/v1/pedidos_airpet",
-              {
-                method:"POST",
-                headers:{
-                  "Content-Type":"application/json",
-                  "apikey":SUPABASE_KEY,
-                  "Authorization":"Bearer " + SUPABASE_KEY,
-                  "Prefer":"return=minimal"
-                },
-                body:JSON.stringify(pedido)
-              }
-            );
-
-          if(!respuesta.ok){
-
-            const errorTexto =
-              await respuesta.text();
-
-            console.error("Error Supabase:",errorTexto);
-
-            throw new Error("No se pudo guardar");
-
-          }
-
-          alert("âœ… Tu pedido fue registrado correctamente.");
-
-          formulario.reset();
-          cerrarFormulario();
-
-        }catch(error){
-
-          console.error(error);
-
-          alert("No pudimos registrar tu pedido. Intenta nuevamente.");
-
-        }finally{
-
-          botonEnviar.disabled = false;
-          botonEnviar.textContent = textoOriginal;
-
-        }
-
-      }
-    );
-
-  }
-
-});
-</script>
-
-</body>
-</html>
+      .trust-item {
+        font-size: 10
